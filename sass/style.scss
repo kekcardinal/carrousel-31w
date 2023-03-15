@@ -4,22 +4,35 @@
 .carrousel{
     position:fixed;
     z-index:1;
-    width:50%;
-    height:50%;
-    top:25%;
-    left:25%;
+    width:100vw;
+    height:100vh;
+    top:0;
+    left:0;
     transform: scale(0);
     transition : transform .5s;
     background-color:aquamarine;
+
+    @media screen and (min-width: 500px){
+        width:50%;
+        height:50%;
+        top:25%;
+        left:25%;
+    }
 }
 
+.bouton_x{
+
+}
 /* Bouton de fermeture de la boite modale*/
 .carrousel_x{
-}
-
-/*Conteneur des images du carousel */
-.carrousel_figure{
-
+    position:absolute;
+    top:10px;
+    right:10px;
+    width:40px;
+    height:40px;
+    border:1px solid #aaa;
+    border-radius:5px;
+    z-index: 2;
 }
 
 .carrousel--ouvrir{
@@ -28,7 +41,14 @@
 
 /* Conteneur des boutons radio */
 .carrousel_form{
-
+        position:absolute;
+        bottom:0;
+        left:0;
+        width:100%;
+        height:30px;
+        display:flex;
+        justify-content:center;
+        z-index: 3;
 }
 
 // conteneur des images
@@ -39,6 +59,7 @@
 }
 
 .carrousel_img{
+    display:block;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -47,6 +68,7 @@
     opacity: 0;
     transition: opacity .5s;
     object-fit: cover;
+    z-index:1;
 }
 
 .carrousel_img--activer{

@@ -1,3 +1,10 @@
+/*
+Condtion pour verif si boite deja ouverte
+Bouton ouvrir disparait et add event listener sur image et fait afficher la bonne image
+ couper le texte du menu secondaire lorsque écran reduit et mettre juste le sigle
+
+*/
+
 (function(){
     //function IFEE
 
