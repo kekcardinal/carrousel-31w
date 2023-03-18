@@ -37,8 +37,7 @@
   
   function creation_carrousel()
   {
-  return '<button class="bouton_ouvrir">Ouvrir</button>
-      <div class="carrousel">
+  return '<div class="carrousel">
       <button class="carrousel_x">X</button>
       <figure class="carrousel_figure"></figure>
       <form class="carrousel_form"></form>
