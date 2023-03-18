@@ -23,21 +23,26 @@ Bouton ouvrir disparait et add event listener sur image et fait afficher la bonn
     let elmCarrousel = document.querySelector('.carrousel');
     let elmCarrousel_x=document.querySelector(".carrousel_x");
     let elmGalerie = document.querySelector('.gallerie');
-    let elmGalerie_img = elmGalerie.querySelectorAll('img');
+    let elmGalerie_img = elmGalerie.querySelectorAll('.wp-block-image img');
     let elmCarrousel_figure = document.querySelector('.carrousel_figure');
     let elmCarrousel_form = document.querySelector('.carrousel_form');
     console.log(elmGalerie_img.length);
     console.log(bouton_ouvrir.tagname);
 
-    bouton_ouvrir.addEventListener('mousedown', function(){
-        console.log('boîte modale');
-        elmCarrousel.classList.add("carrousel--ouvrir");
-        ajouter_carrousel();
-    })
+    for(images of elmGalerie_img)
+    {
+        images.addEventListener('click', function(event){
+            console.log('boîte modale');
+            elmCarrousel.classList.add("carrousel--ouvrir");
+            ajouter_carrousel(event);
+        })
+    }
+    
 
     elmCarrousel_x.addEventListener('mousedown', function(){
         console.log('boîte modale');
         elmCarrousel.classList.remove("carrousel--ouvrir");
+        enlever_radio();
 })
 
 function ajouter_carrousel()
@@ -74,6 +79,18 @@ function ajouter_radio(){
         activer_image(this.dataset.index);
     });
 }
+
+function enlever_radio(){
+
+    let elmCarrousel_radio = document.querySelectorAll('input[name=radCarrousel]');
+
+    for(carrousel of elmCarrousel_radio)
+    {
+        carrousel.remove();
+        console.log("poulet");
+    }
+}
+
 
 function activer_image(index)
 {
