@@ -93,7 +93,7 @@ Bouton ouvrir disparait et add event listener sur image et fait afficher la bonn
   let index_precedent = -1;
 
   function ajouter_radio() {
-    let elmCarrousel_radio = document.createElement("Input");
+    let elmCarrousel_radio = document.createElement("input");
     elmCarrousel_radio.setAttribute("type", "radio");
     elmCarrousel_radio.setAttribute("name", "radCarrousel");
     elmCarrousel_radio.dataset.index = index;
@@ -103,6 +103,7 @@ Bouton ouvrir disparait et add event listener sur image et fait afficher la bonn
 
     elmCarrousel_radio.addEventListener("mousedown", function () {
       activer_image(this.dataset.index);
+      this.checked = true; // coche le bouton radio correspondant à l'image affichée
     });
   }
 
@@ -126,7 +127,14 @@ Bouton ouvrir disparait et add event listener sur image et fait afficher la bonn
   }
 
   function activer_image(index) {
-    console.log(index);
+    if (index >= elmCarrousel_figure.children.length) {
+      index = 0;
+    }
+
+    if (index < 0) {
+      index = elmCarrousel_figure.children.length - 1;
+    }
+
     if (index_precedent != -1) {
       elmCarrousel_figure.children[index_precedent].classList.remove(
         "carrousel_img--activer"
@@ -137,13 +145,12 @@ Bouton ouvrir disparait et add event listener sur image et fait afficher la bonn
       images.classList.remove("carrousel_img--activer");
     }
 
-    if (index < 0) {
-      index = elmCarrousel_figure.children.length - 1;
-    } else if (index >= elmCarrousel_figure.children.length) {
-      index = 0;
-    }
-
     elmCarrousel_figure.children[index].classList.add("carrousel_img--activer");
     index_precedent = index;
+
+    let radCarrousel = document.querySelector(
+      `input[name=radCarrousel][data-index="${index}"]`
+    );
+    radCarrousel.checked = true; // coche le bouton radio correspondant à l'image affichée
   }
 })();
