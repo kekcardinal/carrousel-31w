@@ -5,129 +5,126 @@ Bouton ouvrir disparait et add event listener sur image et fait afficher la bonn
 
 */
 
-(function(){
-    //function IFEE
+(function () {
+  //function IFEE
 
-    //a faire
+  //a faire
 
-    // fleches de nav
-    // clicker sur une image de la gallerie pour ouvrir le carrousel
-    // se débarasser du btn ouvrir
-    // formatage
-    // form en position absolute
-    // bouton x en position absolute
-    
-    console.log("début du carrousel");
+  // fleches de nav
+  // clicker sur une image de la gallerie pour ouvrir le carrousel
+  // se débarasser du btn ouvrir
+  // formatage
+  // form en position absolute
+  // bouton x en position absolute
 
-    let elmCarrousel = document.querySelector('.carrousel');
-    let elmCarrousel_x=document.querySelector(".carrousel_x");
-    let elmGalerie = document.querySelector('.gallerie');
-    let elmGalerie_img = elmGalerie.querySelectorAll('.wp-block-image img');
-    let elmCarrousel_figure = document.querySelector('.carrousel_figure');
-    let elmCarrousel_form = document.querySelector('.carrousel_form');
-    console.log(elmGalerie_img.length);
+  console.log("début du carrousel");
 
-    for(images of elmGalerie_img)
-    {
-        images.addEventListener('click', function(event){
-            console.log('boîte modale');
-            elmCarrousel.classList.add("carrousel--ouvrir");
-            ajouter_carrousel(event);
-        })
+  let elmCarrousel = document.querySelector(".carrousel");
+  let elmCarrousel_x = document.querySelector(".carrousel_x");
+  let elmGalerie = document.querySelector(".gallerie");
+  let elmGalerie_img = elmGalerie.querySelectorAll(".wp-block-image img");
+  let elmCarrousel_figure = document.querySelector(".carrousel_figure");
+  let elmCarrousel_form = document.querySelector(".carrousel_form");
+  let img_carrousel = document.querySelector(".carrousel_img");
+
+  console.log(elmGalerie_img.length);
+
+  console.log(img_carrousel);
+
+  for (images of elmGalerie_img) {
+    images.addEventListener("click", function (event) {
+      if (!elmCarrousel.classList.contains("carrousel--ouvrir")) {
+        elmCarrousel.classList.add("carrousel--ouvrir");
+        ajouter_carrousel(event);
+      }
+    });
+  }
+
+  document.querySelectorAll;
+
+  elmCarrousel_x.addEventListener("mousedown", function () {
+    elmCarrousel.classList.remove("carrousel--ouvrir");
+    enlever_carrousel();
+    enlever_radio();
+    index = 0;
+  });
+
+  function ajouter_carrousel(event) {
+    for (i = 0; i < elmGalerie_img.length; i++) {
+      let index_actif = ajouter_img(elmGalerie_img[i], i, event); //ajout l'image dans le carousel
+      console.log(index_actif);
+      ajouter_radio();
+
+      console.log(event.target.getAttribute("src"));
     }
+  }
 
-    document.querySelectorAll
-    
-
-    elmCarrousel_x.addEventListener('mousedown', function(){
-        console.log('boîte modale');
-        elmCarrousel.classList.remove("carrousel--ouvrir");
-        enlever_carrousel();
-        enlever_radio();
-        index=0;
-})
-
-function ajouter_carrousel(event)
-{
-    for( i = 0 ; i<elmGalerie_img.length ; i++)
-    {
-        let index_actif = ajouter_img(elmGalerie_img[i], i, event); //ajout l'image dans le carousel
-        console.log(index_actif);
-        ajouter_radio();
-
-        console.log(event.target.getAttribute('src'));
-    }
-   }
-
-function ajouter_img(elmImg , i,  event){
-    let elmCarrousel_img=document.createElement('img');
-    elmCarrousel_img.setAttribute('src', elmImg.getAttribute('src'));
+  function ajouter_img(elmImg, i, event) {
+    let elmCarrousel_img = document.createElement("img");
+    elmCarrousel_img.setAttribute("src", elmImg.getAttribute("src"));
     elmCarrousel_img.classList.add("carrousel_img");
-    elmCarrousel_img.dataset.index=index;
+    elmCarrousel_img.dataset.index = index;
     elmCarrousel_figure.appendChild(elmCarrousel_img);
 
-    if (elmCarrousel_img.getAttribute('src') == event.target.getAttribute('src'))
-    {
-        
-        elmCarrousel_figure.children[i].classList.add('carrousel_img--activer');
-        // activer_image(index);
-        
-        console.log(index);
+    if (
+      elmCarrousel_img.getAttribute("src") == event.target.getAttribute("src")
+    ) {
+      elmCarrousel_figure.children[i].classList.add("carrousel_img--activer");
+      // activer_image(index);
+
+      console.log(index);
     }
-}
+  }
 
-let index = 0 ;
-let index_precedent = -1;
+  let index = 0;
+  let index_precedent = -1;
 
-function ajouter_radio(){
-    let elmCarrousel_radio = document.createElement('Input');
-    elmCarrousel_radio.setAttribute("type","radio");
-    elmCarrousel_radio.setAttribute("name","radCarrousel");
+  function ajouter_radio() {
+    let elmCarrousel_radio = document.createElement("Input");
+    elmCarrousel_radio.setAttribute("type", "radio");
+    elmCarrousel_radio.setAttribute("name", "radCarrousel");
     elmCarrousel_radio.dataset.index = index;
     index++;
 
     elmCarrousel_form.appendChild(elmCarrousel_radio);
 
-    elmCarrousel_radio.addEventListener('mousedown',function(){
-        activer_image(this.dataset.index);
+    elmCarrousel_radio.addEventListener("mousedown", function () {
+      activer_image(this.dataset.index);
     });
-}
+  }
 
-function enlever_radio(){
+  function enlever_radio() {
+    let elmCarrousel_radio = document.querySelectorAll(
+      "input[name=radCarrousel]"
+    );
 
-    let elmCarrousel_radio = document.querySelectorAll('input[name=radCarrousel]');
-
-    for(carrousel of elmCarrousel_radio)
-    {
-        carrousel.remove();
-        console.log("poulet");
+    for (carrousel of elmCarrousel_radio) {
+      carrousel.remove();
+      console.log("poulet");
     }
-}
+  }
 
-function enlever_carrousel(){
+  function enlever_carrousel() {
     let carrousel_a_enlever = document.querySelectorAll(".carrousel_img");
 
-    for (images of carrousel_a_enlever)
-    {
-        images.remove();
+    for (images of carrousel_a_enlever) {
+      images.remove();
     }
-}
+  }
 
-
-function activer_image(index)
-{
+  function activer_image(index) {
     console.log(index);
-    if (index_precedent != -1)
-    {
-        elmCarrousel_figure.children[index_precedent].classList.remove('carrousel_img--activer');
+    if (index_precedent != -1) {
+      elmCarrousel_figure.children[index_precedent].classList.remove(
+        "carrousel_img--activer"
+      );
     }
-    let reset_classe = document.querySelectorAll(".carrousel_img")
-    for ( images of reset_classe)
-    {
-        images.classList.remove('carrousel_img--activer');
+    let reset_classe = document.querySelectorAll(".carrousel_img");
+    for (images of reset_classe) {
+      images.classList.remove("carrousel_img--activer");
     }
-    
-    elmCarrousel_figure.children[index].classList.add('carrousel_img--activer');
-    index_precedent=index;
-}
+
+    elmCarrousel_figure.children[index].classList.add("carrousel_img--activer");
+    index_precedent = index;
+  }
 })();

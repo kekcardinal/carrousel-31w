@@ -13,9 +13,7 @@
   * Description: Carrousel qui permet d'afficher dans une boite modale les images d'une galerie avec un système de navigation
   */
 
-  
-
-
+  /* test */
   function carrousel_enqueue(){
   
   $version_css = filemtime(plugin_dir_path(__FILE__ ) . "style.css");
@@ -43,8 +41,5 @@
       <form class="carrousel_form"></form>
       </div>';
   }
-  
   add_shortcode('carrousel', 'creation_carrousel');
-  
   ?>
-
