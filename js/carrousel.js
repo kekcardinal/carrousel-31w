@@ -60,16 +60,25 @@ Bouton ouvrir disparait et add event listener sur image et fait afficher la bonn
     enlever_carrousel();
     enlever_radio();
     index = 0;
+    index_click = 0;
   });
+
+  index_click = 0;
 
   function ajouter_carrousel(event) {
     for (i = 0; i < elmGalerie_img.length; i++) {
-      let index_actif = ajouter_img(elmGalerie_img[i], i, event); //ajout l'image dans le carousel
-      console.log(index_actif);
+      ajouter_img(elmGalerie_img[i], i, event); //ajout l'image dans le carousel
       ajouter_radio();
-
+      console.log("index-click = " + index_click);
+      // console.log(event.target.dataset.index);
       console.log(event.target.getAttribute("src"));
     }
+    let radCarrousel = document.querySelector(
+      `input[name=radCarrousel][data-index="${index_click}"]`
+    );
+    index_precedent = index_click;
+    index = index_click;
+    radCarrousel.checked = true; // coche le bouton radio correspondant à l'image affichée
   }
 
   function ajouter_img(elmImg, i, event) {
@@ -82,6 +91,7 @@ Bouton ouvrir disparait et add event listener sur image et fait afficher la bonn
     if (
       elmCarrousel_img.getAttribute("src") == event.target.getAttribute("src")
     ) {
+      index_click = i;
       elmCarrousel_figure.children[i].classList.add("carrousel_img--activer");
       // activer_image(index);
 
@@ -126,6 +136,10 @@ Bouton ouvrir disparait et add event listener sur image et fait afficher la bonn
     for (images of carrousel_a_enlever) {
       images.remove();
     }
+
+    index_click = 0;
+    index = 0;
+    index_precedent = -1;
   }
 
   function activer_image(index) {
@@ -156,6 +170,8 @@ Bouton ouvrir disparait et add event listener sur image et fait afficher la bonn
     );
     radCarrousel.checked = true; // coche le bouton radio correspondant à l'image affichée
 
+    console.log("Index activer image = " + index);
+    console.log("Index activer image_precedent = " + index_precedent);
     index = parseInt(index);
     index_precedent = parseInt(index_precedent);
   }
