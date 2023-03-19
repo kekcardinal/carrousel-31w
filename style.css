@@ -19,6 +19,44 @@
   }
 }
 
+.btn_gauche {
+  position: absolute;
+  margin: 15px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  color: #000;
+  font-size: 18px;
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.btn_droite {
+  right: 0;
+  margin: 15px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  color: #000;
+  font-size: 18px;
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+  z-index: 2;
+}
+
 /* Bouton de fermeture de la boite modale*/
 .carrousel_x {
   position: absolute;

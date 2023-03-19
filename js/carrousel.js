@@ -27,6 +27,19 @@ Bouton ouvrir disparait et add event listener sur image et fait afficher la bonn
   let elmCarrousel_form = document.querySelector(".carrousel_form");
   let img_carrousel = document.querySelector(".carrousel_img");
 
+  let elmNavGauche = document.querySelector(".btn_gauche");
+  let elmNavDroite = document.querySelector(".btn_droite");
+
+  elmNavGauche.addEventListener("click", function () {
+    console.log("gauche");
+    activer_image(index_precedent - 1);
+  });
+
+  elmNavDroite.addEventListener("click", function () {
+    console.log("droite");
+    activer_image(index_precedent + 1);
+  });
+
   console.log(elmGalerie_img.length);
 
   console.log(img_carrousel);
@@ -122,6 +135,12 @@ Bouton ouvrir disparait et add event listener sur image et fait afficher la bonn
     let reset_classe = document.querySelectorAll(".carrousel_img");
     for (images of reset_classe) {
       images.classList.remove("carrousel_img--activer");
+    }
+
+    if (index < 0) {
+      index = elmCarrousel_figure.children.length - 1;
+    } else if (index >= elmCarrousel_figure.children.length) {
+      index = 0;
     }
 
     elmCarrousel_figure.children[index].classList.add("carrousel_img--activer");
