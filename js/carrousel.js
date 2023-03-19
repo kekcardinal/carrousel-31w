@@ -104,6 +104,8 @@ Bouton ouvrir disparait et add event listener sur image et fait afficher la bonn
     elmCarrousel_radio.addEventListener("mousedown", function () {
       activer_image(this.dataset.index);
       this.checked = true; // coche le bouton radio correspondant à l'image affichée
+      index = this.dataset.index;
+      console.log(index);
     });
   }
 
@@ -145,6 +147,7 @@ Bouton ouvrir disparait et add event listener sur image et fait afficher la bonn
       images.classList.remove("carrousel_img--activer");
     }
 
+    console.log(index);
     elmCarrousel_figure.children[index].classList.add("carrousel_img--activer");
     index_precedent = index;
 
@@ -152,5 +155,8 @@ Bouton ouvrir disparait et add event listener sur image et fait afficher la bonn
       `input[name=radCarrousel][data-index="${index}"]`
     );
     radCarrousel.checked = true; // coche le bouton radio correspondant à l'image affichée
+
+    index = parseInt(index);
+    index_precedent = parseInt(index_precedent);
   }
 })();
